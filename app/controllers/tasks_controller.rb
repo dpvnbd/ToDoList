@@ -1,8 +1,9 @@
 class TasksController < ApplicationController
+  before_action :set_user
   before_action :set_task, only: [:show, :update, :destroy]
 
   def index
-    @tasks = Task.all
+    @tasks = @user.tasks.all
     render json: @tasks
   end
 
@@ -11,7 +12,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.create!(task_params)
+    @task = @user.tasks.create!(task_params)
     render json: @task
   end
 
@@ -30,7 +31,11 @@ class TasksController < ApplicationController
     params.permit(:title, :description, :deadline, :status, :priority)
   end
 
+  def set_user
+    @user = current_user
+  end
+
   def set_task
-    @task = Task.find(params[:id])
+    @task = @user.tasks.find(params[:id])
   end
 end
