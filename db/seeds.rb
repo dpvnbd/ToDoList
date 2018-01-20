@@ -10,3 +10,6 @@ Task.delete_all
 Task.create!(id: 1, title: "Some task", description: "Some description", priority: 42, deadline: DateTime.current)
 Task.create!(id: 2, title: "Another one", description: "qwerty",
              priority: 0, deadline: DateTime.current + 2.days, status: :completed)
+
+User.delete_all
+User.create!(email: "test@test.com", password: "12345678")
