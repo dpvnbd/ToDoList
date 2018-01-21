@@ -11,7 +11,8 @@ export class AppComponent {
 
   constructor(private _tokenService: Angular2TokenService) {
     this._tokenService.init({
-      apiPath: 'api/',
+      apiPath: 'api',
+      signInRedirect: 'login',
     });
   }
 }
