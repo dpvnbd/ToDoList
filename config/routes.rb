@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  mount_devise_token_auth_for 'User', at: 'auth', skip: [:omniauth_callbacks]
+  mount_devise_token_auth_for 'User', at: 'api/auth', skip: [:omniauth_callbacks]
 
-  resources :tasks
-
-  root to: "tasks#index"
+  namespace :api do
+    resources :tasks
+  end
 end
