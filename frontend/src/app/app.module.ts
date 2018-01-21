@@ -1,7 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 
-
 import {AppComponent} from './app.component';
 
 import {Angular2TokenService} from 'angular2-token';
@@ -14,6 +13,7 @@ import {FormsModule} from "@angular/forms";
 import {AlertService} from "./services/alert.service";
 import { AlertComponent } from './alert/alert.component';
 import { RegisterComponent } from './register/register.component';
+import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 
 const routes = [
   {path: '', component: TaskListComponent, canActivate: [Angular2TokenService]},
@@ -38,7 +38,8 @@ const routes = [
     HttpModule, // Used in Angular2TokenService,
     HttpClientModule,
     RouterModule.forRoot(routes),
-    FormsModule
+    FormsModule,
+    NgbModule.forRoot()
   ],
   providers: [
     Angular2TokenService,
