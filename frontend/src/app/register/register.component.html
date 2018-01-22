@@ -1,25 +1,26 @@
 <div class="row justify-content-center">
   <div class="col-md-4">
     <h2>Register</h2>
-    <form name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
-      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
+    <form name="form" (ngSubmit)="f.valid && register()" #f="ngForm" novalidate>
+      <div class="form-group" >
         <label for="email">Email</label>
-        <input type="text" class="form-control" id="email" name="email"
+        <input type="text" class="form-control" id="email" name="email" [ngClass]="{ 'is-invalid': email.invalid }"
                [(ngModel)]="model.email" #email="ngModel" required/>
-        <div *ngIf="f.submitted && !email.valid" class="help-block">Email is required</div>
+        <div *ngIf="email.invalid" class="invalid-feedback">Email is required</div>
       </div>
-      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+      <div class="form-group" >
         <label for="password">Password</label>
-        <input type="password" class="form-control" id="password" name="password"
-               [(ngModel)]="model.password" #password="ngModel" required/>
-        <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
+        <input type="password" class="form-control" id="password" name="password" [ngClass]="{ 'is-invalid': password.invalid }"
+               [(ngModel)]="model.password" #password="ngModel" required minlength="8"/>
+        <div *ngIf="password.invalid" class="invalid-feedback">Password should be at least 8 characters</div>
       </div>
 
-      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+      <div class="form-group" >
         <label for="passwordConfirmation">Confirm password</label>
-        <input type="password" class="form-control" id="passwordConfirmation" name="passwordConfirmation"
+        <input type="password" class="form-control" id="passwordConfirmation" name="passwordConfirmation" [ngClass]="{ 'is-invalid': passwordConfirmation.invalid }"
                [(ngModel)]="model.passwordConfirmation" #passwordConfirmation="ngModel" required/>
-        <div *ngIf="f.submitted && !passwordConfirmation.valid" class="help-block">Passwords don't match</div>
+        <div *ngIf="password !== passwordConfirmation"
+             class="invalid-feedback">Confirm password</div>
       </div>
 
       <div class="form-group">
