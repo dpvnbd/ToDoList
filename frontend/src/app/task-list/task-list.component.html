@@ -22,7 +22,7 @@
             <div class="custom-control custom-checkbox col-sm-8">
               <input [ngModel]="task && task.status == 'completed'" (click)="onCheckboxClick(task)"
                      type="checkbox" class="custom-control-input" id="checkbox{{task.id}}">
-              <label class="custom-control-label" for="checkbox{{task.id}}">{{task.title}}</label>
+              <label class="custom-control-label font-weight-bold" for="checkbox{{task.id}}">{{task.title}}</label>
             </div>
 
             <div class="col-sm-4">
@@ -40,6 +40,12 @@
 
         <div class="card-body">
           <p class="card-text">{{task.description}}</p>
+        </div>
+        <div class="card-footer text-muted" *ngIf="task.deadline || task.priority">
+          <span *ngIf="task.deadline"> Deadline: {{task.deadline | date: 'MM/dd HH:MM'}}</span>
+          <span *ngIf="task.priority || task.deadline"> Priority:
+            <span class="badge badge-info">{{task.priority}}</span>
+          </span>
         </div>
       </div>
     </div>
