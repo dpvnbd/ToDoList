@@ -17,16 +17,18 @@ export class TaskEditComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.isCompleted = this.task.status === TaskStatus.Completed;
   }
 
   submit() {
+    if (this.date || this.time) {
+      this.task.deadline = new Date();
+    }
 
-    this.task.deadline = new Date();
-
-    if(this.date){
+    if (this.date) {
       this.task.deadline.setFullYear(this.date.year, this.date.month - 1, this.date.day);
     }
-    if(this.time){
+    if (this.time) {
       this.task.deadline.setHours(this.time.hour, this.time.minute);
     }
 
