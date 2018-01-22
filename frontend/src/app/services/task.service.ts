@@ -10,11 +10,11 @@ export enum TaskStatus {
 }
 
 export interface Task {
-  id: number,
-  title: string,
-  description: string,
-  status: TaskStatus,
-  priority: number,
+  id?: number,
+  title?: string,
+  description?: string,
+  status?: TaskStatus,
+  priority?: number,
   deadline?: any,
   created_at?: any,
   updated_at?: any
@@ -32,5 +32,13 @@ export class TaskService {
 
   createTask(task:Task): Observable<Task> {
     return this.http.post<Task>('api/tasks', task);
+  }
+
+  updateTask(task:Task){
+    return this.http.put('api/tasks/' + task.id, task);
+  }
+
+  deleteTask(task:Task){
+    return this.http.delete('api/tasks/' + task.id);
   }
 }

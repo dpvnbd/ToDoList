@@ -31,7 +31,6 @@ export class TaskEditComponent implements OnInit {
     }
 
     this.task.status = this.isCompleted ? TaskStatus.Completed : TaskStatus.InProgress;
-    console.log(this.task);
     this.activeModal.close(this.task);
   }
 }
