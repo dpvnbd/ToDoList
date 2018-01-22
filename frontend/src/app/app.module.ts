@@ -16,6 +16,7 @@ import { RegisterComponent } from './register/register.component';
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {TaskService} from "./services/task.service";
 import {AuthInterceptor} from "./services/auth_intercepror";
+import { TaskEditComponent } from './task-edit/task-edit.component';
 
 const routes = [
   {path: '', component: TaskListComponent, canActivate: [Angular2TokenService]},
@@ -34,6 +35,7 @@ const routes = [
     TaskListComponent,
     AlertComponent,
     RegisterComponent,
+    TaskEditComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,6 +54,9 @@ const routes = [
       useClass: AuthInterceptor,
       multi: true
     }
+  ],
+  entryComponents: [
+    TaskEditComponent
   ],
   bootstrap: [AppComponent]
 })

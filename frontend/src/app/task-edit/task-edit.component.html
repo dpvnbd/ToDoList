@@ -1,0 +1,70 @@
+<div class="modal-header">
+  <h4 class="modal-title">Hi there!</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form #f = "ngForm" name="form" novalidate>
+    <div class="form-group row">
+      <label for="inputTitle" class="col-sm-3 col-form-label">Title</label>
+      <div class="col-sm-9">
+        <input [(ngModel)]="task.title" class="form-control" type="text" id="inputTitle"
+               name="inputTitle" placeholder="Title" #title="ngModel"
+               [ngClass]="{ 'is-invalid': title.invalid }" required>
+        <div *ngIf="title.invalid" class="invalid-feedback">Title is required</div>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="inputDescription" class="col-sm-3 col-form-label">Description</label>
+      <div class="col-sm-9">
+        <textarea [(ngModel)]="task.description" class="form-control" id="inputDescription"
+                  name="inputDescription" placeholder="Description"  #description="ngModel"
+                  [ngClass]="{ 'is-invalid': description.invalid }" required>
+        </textarea>
+        <div *ngIf="description.invalid" class="invalid-feedback">
+          Description is required
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="inputDeadline" class="col-sm-3 col-form-label">Deadline</label>
+      <div class="col-sm-9">
+        <div class="input-group">
+          <input class="form-control" placeholder="yyyy-mm-dd" id="inputDeadline" name="dp"
+                 [(ngModel)]="date" ngbDatepicker #d="ngbDatepicker">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
+              <span class="fa fa-calendar fa-lg" aria-hidden="true"></span>
+            </button>
+          </div>
+        </div>
+
+        <ngb-timepicker [(ngModel)]="time" name="timepicker"></ngb-timepicker>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="inputPriority" class="col-sm-3 col-form-label">Priority</label>
+      <div class="col-sm-3">
+        <input [(ngModel)]="task.priority" type="number" class="form-control" id="inputPriority"
+               name="inputPriority" placeholder="0" >
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-sm-3">Completed</div>
+      <div class="col-sm-9">
+        <div class="form-check">
+          <input [(ngModel)]="isCompleted" class="form-check-input" type="checkbox" id="inputCompleted" name="inputCompleted">
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-primary" (click)="f.valid && submit()">Save</button>
+  <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss('Close click')">Cancel</button>
+</div>

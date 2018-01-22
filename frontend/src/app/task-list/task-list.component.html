@@ -1,10 +1,12 @@
+
+
 <div class="row justify-content-center">
   <div class="col-sm-8">
-
+    <button class="btn btn-lg btn-outline-primary mb-3" (click)="openCreate()">Create</button>
 
     <div class="card mb-3" *ngFor="let task of tasks">
       <div class="card-header">
-        {{task.title}}
+        {{task.title}} 
       </div>
       <div class="card-body">
         <p class="card-text">{{task.description}}</p>
@@ -13,3 +15,4 @@
 
   </div>
 </div>
+
